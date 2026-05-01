@@ -1,13 +1,13 @@
-# Nettoyage global des secrets (Version Optimisee)
-Write-Host "Nettoyage global des secrets (Google OAuth) - Version Rapide..." -ForegroundColor Yellow
+# Nettoyage global des secrets (Version V16 - 01 Mai 2026)
+Write-Host "Nettoyage global des secrets (Google OAuth) - ClaraVerse V16..." -ForegroundColor Yellow
 
 $idPattern = '(\d{12}-[a-z0-9]{32}\.apps\.googleusercontent\.com)'
 $secretPattern = '(GOCSPX-[a-zA-Z0-9_-]{28})'
 
-# Liste des fichiers a ignorer
+# Liste des dossiers a ignorer absolument
 $excludeDirs = @("node_modules", ".git", ".netlify", ".kiro", ".hypothesis", ".pytest_cache")
 
-# On recupere tous les fichiers textes interessants en ignorant les dossiers lourds
+Write-Host "Collecte des fichiers (ceci peut prendre 1-2 minutes)..." -ForegroundColor Gray
 $files = Get-ChildItem -Path . -Recurse | Where-Object { 
     $_.FullName -notmatch ($excludeDirs -join "|") -and 
     $_.Extension -in @(".txt", ".md", ".js", ".tsx", ".ts", ".json", ".html") 
@@ -28,4 +28,4 @@ foreach ($file in $files) {
     }
 }
 
-Write-Host "Nettoyage global termine!" -ForegroundColor Green
+Write-Host "Nettoyage global V16 termine!" -ForegroundColor Green
